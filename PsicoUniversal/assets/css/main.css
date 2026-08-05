@@ -7,9 +7,41 @@
     --color-acento: #CFE8FF;
     --color-blanco: #FFFFFF;
 
+     --font-title: 'Merriweather', serif;
+  --font-body: 'Open Sans', sans-serif;
+
+    --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 32px;
+
     --radio-borde: 0px;         /* esquinas redondeadas = sensación más amable */
     --transicion-suave: 250ms ease-out;
     --espaciado-seccion: 6rem;
+}
+
+/* ===========================
+   Tipografía
+   =========================== */
+body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-main);
+  background-color: var(--secondary);
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-title);
+  color: var(--primary);
+  margin-bottom: var(--spacing-md);
+}
+
+p {
+  color: var(--text-light);
+  margin-bottom: var(--spacing-md);
 }
 
 /* ===========================
@@ -17,43 +49,31 @@
 =========================== */
 
 .promo-flotante{
-
     position:fixed;
-
     right:0;
-
     top:55%;
-
     transform:translateY(-50%);
-
     z-index:900;
-
+    animation: promo-entrada .6s ease-out .3s both;
 }
 .promo-flotante__boton{
 
     display:flex;
-
+    padding:.9rem 1.2rem;
     align-items:center;
-
-    gap:.75rem;
-
+    gap:.7rem;
     padding:1rem 1.2rem;
-
     border:none;
-
-    border-radius:16px 0 0 16px;
-
+    border-radius:var(--radio-borde-chico) 0 0 var(--radio-borde-chico);
     background:var(--color-primario);
-
     color:white;
-
     cursor:pointer;
-
-    box-shadow:-6px 8px 20px rgba(0,0,0,.18);
-
-    transition:all .25s ease;
-
+    box-shadow:-6px 8px 24px rgba(12,79,144,.28);
+    transition:transform .25s ease, background .25s ease, box-shadow .25s ease;
 }
+
+.promo-flotante__boton svg{ flex-shrink:0; }
+
 .promo-flotante__boton span{
 
     text-align:left;
@@ -66,11 +86,14 @@
 
 }
 .promo-flotante__boton:hover{
-
     transform:translateX(-8px);
-
     background:var(--color-primario-oscuro);
+    box-shadow:-8px 10px 28px rgba(12,79,144,.34);
+}
 
+@keyframes promo-entrada{
+    from{ transform:translateY(-50%) translateX(16px); opacity:0; }
+    to{ transform:translateY(-50%) translateX(0); opacity:1; }
 }
 .promo-modal{
 
@@ -111,7 +134,7 @@
 
     padding:2.5rem;
 
-    border-radius:18px;
+    border-radius:var(--radio-borde);
 
     background:white;
 
@@ -150,6 +173,14 @@ body {
     max-width: 1100px;
     margin: 0 auto;
     padding: 0 1.5rem;
+}
+
+h1 {
+    margin: 0 0 1rem;
+    font-weight: 700;
+    letter-spacing: -0.005em;
+    line-height: 1.2;
+    font-size: clamp(2rem, 3.4vw, 2.75rem);
 }
 
 main { display: block; }
@@ -401,13 +432,7 @@ html {
 
 }
 .hero__texto h1{
-
-    margin-top:0;
-
-    margin-bottom:1rem;
-
-    font-size:2.8rem;
-
+    font-size:clamp(2.2rem, 4vw, 3rem);
 }
 
 .hero__subtitulo{
@@ -536,157 +561,218 @@ html {
 
 /* ===== HERO DE PÁGINAS INTERNAS ===== */
 
+/*==================================================
+HERO DE PÁGINAS INTERNAS
+==================================================*/
+
 .pagina-header{
-    background: var(--color-primario-oscuro);
-    max-width: 1100px;
-    margin: 0  auto;
-    color: white;
-    padding: 7rem 0 5rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
+
+    position:relative;
+
+    overflow:hidden;
+
+    max-width:1090px;
+
+    margin:0 auto 0rem;
+
+    padding:4rem 5rem;
+
+    background:#F4EFE7;
+
 }
 
-.pagina-header h1{
-    color: white;
-    margin-bottom: 1rem;
+/* Mismas formas suaves y redondas del hero de portada (ahí son la
+   sombra sobre la foto; aquí, sin foto, se quedan como decoración) */
+.pagina-header::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:42%;
+
+    top:15%;
+
+    bottom:15%;
+
+    width:1px;
+
+    background:rgba(58,116,207,.15);
+
 }
-
-.pagina-header__intro{
-    max-width: 720px;
-
-    margin: 0 auto;
-
-    color: rgba(255,255,255,.82);
-
-    font-size: 1.05rem;
-
-    line-height: 1.8;
-}
-
 .pagina-header::after{
 
     content:"";
 
     position:absolute;
 
-    left:50%;
-    bottom:-45px;
+    top:50%;
 
-    width:160%;
-    height:90px;
+    right:6%;
+
+    transform:translateY(-50%);
+
+    width:260px;
+
+    height:320px;
+
+    background:rgba(58,116,207,.10);
+
+}
+.pagina-header::before{ top:-70px; right:-70px; width:220px; height:220px; }
+.pagina-header::after{ bottom:-90px; left:-60px; width:260px; height:260px; background: rgba(255,255,255,.06); }
+
+.pagina-header__card{
+
+    position:relative;
+
+    z-index:2;
+
+    width:min(560px,100%);
+
+    padding:3.5rem;
 
     background:white;
 
-    border-radius:50%;
+    box-shadow:0 16px 45px rgba(18,71,120,.08);
 
-    transform:translateX(-50%);
 }
 
-/* ===== LISTA DE TERAPIAS ===== */
+.pagina-header h1{
+
+    margin-bottom:1.5rem;
+
+    color:var(--color-primario-oscuro);
+
+    text-align:left;
+
+    font-size:clamp(2.2rem,4vw,3.3rem);
+
+    line-height:1.15;
+
+}
+
+.pagina-header__intro{
+
+    color:#4F6073;
+
+    text-align:left;
+
+    line-height:1.9;
+
+    font-size:1.05rem;
+
+}
+
+/* Corrige el contraste de subtítulos/etiquetas dentro del hero oscuro
+   (antes se veían casi invisibles, porque heredaban el mismo azul del fondo) */
+.pagina-header .seccion-subtitulo,
+.pagina-header .seccion-intro{
+    color: rgba(255,255,255,.92);
+}
+
+@media (max-width:900px){
+
+    .pagina-header{
+
+        padding:2rem;
+
+    }
+
+    .pagina-header__card{
+
+        width:100%;
+
+        padding:2rem;
+
+    }
+
+    .pagina-header::before,
+    .pagina-header::after{
+
+        display:none;
+
+    }
+
+}
+
+/* ===== GRID DE TERAPIAS =====
+   Mismo patrón de tarjeta que Cursos / Publicaciones / Blog:
+   imagen arriba, contenido abajo, en un grid responsivo. */
 .terapias-lista {
     padding: clamp(1.5rem, 4vw, 2rem) 0 var(--espaciado-seccion);
     background: var(--color-fondo);
 }
 
-.terapias-editorial {
+.terapias-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.terapia-card {
     display: flex;
     flex-direction: column;
-    gap: clamp(4rem, 9vw, 7.5rem);
-    max-width: 1040px;
-    margin: 0 auto;
+    background: var(--color-blanco);
+    border-radius: var(--radio-borde);
+    overflow: hidden;
+    box-shadow: 0 10px 28px rgba(18, 71, 120, 0.06);
 }
 
-.terapia {
-    display: grid;
-    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr);
-    align-items: start;
-    gap: clamp(2.5rem, 7vw, 6.5rem);
-    background: white;
-    padding: 2.5rem;
-    border-radius:12px;
-}
-
-.terapia__texto,
-.terapia__imagen{
-    align-self:start;
-}
-
-.terapia__texto {
-    max-width: 32rem;
-}
-
-.terapia:nth-child(even) .terapia__texto {
-    order: 2;
-    justify-self: end;
-}
-
-.terapia:nth-child(even) .terapia__imagen {
-    order: 1;
-}
-
-.terapia__indice {
-    margin: 0 0 0.9rem;
-    color: var(--color-primario);
-    font-size: 0.78rem;
-    font-weight: 800;
-    letter-spacing: 0.16em;
-}
-
-.terapia__texto h2{
-
-    margin:0 0 .8rem;
-
-    font-size:clamp(1.45rem,2vw,2rem);
-
-    line-height:1.2;
-
-    max-width:18ch;
-
-}
-
-.terapia__descripcion{
-    font-size:1.05rem;
-    line-height:1.9;
-    color:#4A5568;
-}
-
-.terapia__descripcion > :first-child { margin-top: 0; }
-.terapia__descripcion > :last-child { margin-bottom: 0; }
-
-
-.terapia__imagen{
-    overflow:hidden;
-    box-shadow:0 12px 35px rgba(0,0,0,.08);
-}
-
-.terapia__imagen img,
-.terapia__imagen-placeholder {
+.terapia-card__imagen img,
+.terapia-card__imagen-placeholder {
     display: block;
     width: 100%;
     aspect-ratio: 4 / 3;
     object-fit: cover;
 }
 
-.terapia__imagen-placeholder {
+.terapia-card__imagen-placeholder {
     display: grid;
     place-items: center;
+    background: var(--color-acento);
     color: var(--color-primario-oscuro);
     font-size: 0.78rem;
-    font-weight: 800;
+    font-weight: 700;
     letter-spacing: 0.14em;
     text-transform: uppercase;
 }
 
+.terapia-card__contenido {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 1.75rem;
+}
 
+.terapia-card__contenido h2 {
+    margin: 0 0 0.75rem;
+    color: var(--color-primario-oscuro);
+    font-size: 1.3rem;
+    line-height: 1.25;
+}
 
-@media (max-width: 767px) {
-    .terapias-editorial { gap: 4rem; }
-    .terapia { grid-template-columns: 1fr; gap: 1.75rem; }
-    .terapia:nth-child(even) .terapia__texto,
-    .terapia:nth-child(even) .terapia__imagen { order: initial; }
-    .terapia__texto { max-width: 36rem; }
-    .terapia__texto h2 { max-width: 18ch; }
+.terapia-card__descripcion {
+    flex: 1;
+    font-size: 0.98rem;
+    line-height: 1.85;
+    color: #4A5568;
+}
+
+.terapia-card__descripcion > :first-child { margin-top: 0; }
+.terapia-card__descripcion > :last-child { margin-bottom: 0; }
+
+.terapia-card__cta {
+    margin-top: 1.5rem;
+}
+
+.btn--pequeno {
+    padding: 0.65rem 1.4rem;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 480px) {
+    .terapias-grid { grid-template-columns: 1fr; }
 }
 
 /* ===== CURSOS ===== */
@@ -736,10 +822,12 @@ html {
 }
 .cursos-vacio h2 { color: var(--color-primario-oscuro); }
 
-/* ===== ESPACIO VIOLETA ===== */
-.pagina-header--violeta { background: var(--color-primario-oscuro); }
-.pagina-header--violeta h1,
-.pagina-header--violeta .pagina-header__intro { color: #fff; }
+/* ===== ESPACIO VIOLETA =====
+   Misma familia de hero, con el degradado invertido para
+   distinguir la sección sin salirse del sistema. */
+.pagina-header--violeta {
+    background: linear-gradient(135deg, var(--color-primario-oscuro) 0%, var(--color-primario) 100%);
+}
 
 .eventos-lista { padding: 2rem 0 var(--espaciado-seccion); background: var(--color-fondo); }
 
@@ -790,17 +878,24 @@ html {
 
 /* ===== INTRODUCCIÓN DE PÁGINA ===== */
 
-.pagina-intro{
-    padding: 4rem 0 3rem;
+.pagina-intro__titulo{
+    
+    margin:3rem 0 1.5rem;
+    font-size:clamp(1.75rem,2vw,2.75rem);
+    color:var(--color-primario-oscuro);
+
+    text-align:left;
+
 }
+
 
 .pagina-intro__texto{
 
-    max-width: 760px;
+    max-width: 1060px;
 
     margin: 0 auto;
 
-    text-align: center;
+    text-align: left;
 
     font-size: 1.1rem;
 
@@ -810,31 +905,217 @@ html {
 
 }
 
-/* ===== BIOGRAFÍA ===== */
-.bio-seccion { padding: 4rem 0; }
-.bio-seccion__grid { display: grid; grid-template-columns: 1fr; gap: 2rem; align-items: start; }
-@media (min-width: 768px) { .bio-seccion__grid { grid-template-columns: 300px 1fr; } }
-.bio-seccion__foto img { width: 100%; border-radius: var(--radio-borde); object-fit: cover; aspect-ratio: 4/5; }
-.bio-seccion__texto h1 { color: var(--color-primario-oscuro); margin-top: 0; }
+.pagina-header__modalidades{
 
-.seccion-titulo { color: var(--color-primario-oscuro); text-align: center; margin-bottom: 2rem; }
-.seccion-vacio { text-align: center; color: var(--color-texto); opacity: 0.7; }
+    margin-top:1.75rem;
 
+    padding-top:1rem;
+
+    border-top:1px solid rgba(18,71,120,.10);
+
+}
+
+.pagina-header__modalidades-label{
+
+    display:block;
+
+    margin-bottom:.35rem;
+
+    font-size:.72rem;
+
+    font-weight:700;
+
+    text-transform:uppercase;
+
+    letter-spacing:.12em;
+
+    color:#7A8794;
+
+}
+
+.pagina-header__modalidades-items{
+
+    font-size:.92rem;
+
+    color:var(--color-primario-oscuro);
+
+    font-weight:500;
+
+}
+
+/*==========================
+BIOGRAFÍA
+==========================*/
+
+.bio-seccion{
+    padding: 5rem 0;
+}
+
+.bio-card{
+
+    display:grid;
+    grid-template-columns:420px 1fr;
+
+    background:#fff;
+
+    box-shadow:0 18px 45px rgba(18,71,120,.08);
+
+    overflow:hidden;
+
+    align-items:stretch;
+
+}
+
+/* FOTO */
+
+.bio-card__foto{
+
+    overflow:hidden;
+
+}
+
+.bio-card__foto img{
+
+    display:block;
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+}
+
+/* CONTENIDO */
+
+.bio-card__contenido{
+
+    padding:3.5rem;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+
+}
+
+.bio-card__eyebrow{
+
+    display:inline-block;
+
+    margin-bottom:1rem;
+
+    font-size:.8rem;
+
+    font-weight:700;
+
+    letter-spacing:.08em;
+
+    text-transform:uppercase;
+
+    color:var(--color-primario);
+
+}
+
+.bio-card__contenido h1{
+
+    margin:0 0 1.5rem;
+
+    color:var(--color-primario-oscuro);
+
+}
+
+.bio-card__contenido p{
+
+    margin-bottom:1.25rem;
+
+    line-height:1.9;
+
+}
+
+/* RESPONSIVE */
+
+@media (max-width:900px){
+
+    .bio-card{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .bio-card__foto{
+
+        height:420px;
+
+    }
+
+    .bio-card__contenido{
+
+        padding:2rem;
+
+    }
+
+}
 /* ===== FORMACIÓN ===== */
 .formacion-seccion { padding: 2rem 0 var(--espaciado-seccion); }
-.formacion-lista { list-style: none; padding: 0; max-width: 700px; margin: 0 auto; }
-.formacion-item {
-    display: grid;
-    grid-template-columns: 70px 1fr;
-    gap: 1rem;
-    align-items: baseline;
-    background: var(--color-blanco);
-    border-radius: var(--radio-borde);
-    padding: 1.2rem 1.5rem;
-    margin-bottom: 0.8rem;
+.formacion-lista{
+
+    list-style:none;
+
+    max-width:900px;
+
+    margin:auto;
+
+    padding:0;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:1.5rem;
 }
-.formacion-item__anio { font-weight: 700; color: var(--color-primario); }
-.formacion-item__institucion { display: block; font-size: 0.9rem; color: var(--color-primario-oscuro); }
+.formacion-item{
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:space-between;
+
+    padding:2rem;
+
+    background:#fff;
+
+    border-top:4px solid var(--color-primario);
+
+    box-shadow:0 10px 25px rgba(18,71,120,.06);
+
+}
+.formacion-item__anio{
+
+    font-size:2rem;
+
+    font-weight:700;
+
+    margin-bottom:1rem;
+
+}
+.formacion-item span:first-of-type{
+
+    font-size:1.1rem;
+
+    font-weight:600;
+
+    color:var(--color-primario-oscuro);
+
+}
+.formacion-item__institucion{
+
+    margin-top:.8rem;
+
+    color:#69798D;
+
+}
+.formacion-item strong{
+
+    font-size:1.05rem;
+
+}
 
 /* ===== Etiqueta base (usada en Formación y en el grid genérico) ===== */
 .etiqueta{
@@ -1050,5 +1331,4 @@ html {
 
 .footer-legal { border-top: 1px solid rgba(255,255,255,0.15); padding: 1.2rem 0; margin-top: 1rem; }
 .footer-legal p { text-align: center; font-size: 0.85rem; opacity: 0.75; margin: 0; }
-
 

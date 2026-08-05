@@ -83,6 +83,29 @@
 
     </footer>
 
+    <div class="promo-flotante">
+    <button id="abrirPromociones" class="promo-flotante__boton" aria-haspopup="dialog" aria-controls="promoModal">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20.6 12.4 12.4 20.6a2 2 0 0 1-2.8 0l-6.2-6.2a2 2 0 0 1 0-2.8L11.6 3.4a2 2 0 0 1 1.4-.6H19a2 2 0 0 1 2 2v6.2a2 2 0 0 1-.4 1.4Z"/>
+            <circle cx="15.5" cy="7.5" r="1.5"/>
+        </svg>
+        <span>Promociones<br>del mes</span>
+    </button>
+</div>
+
+<div class="promo-modal" id="promoModal" role="dialog" aria-modal="true" aria-labelledby="promoModalTitulo">
+    <div class="promo-modal__contenido">
+        <button class="promo-modal__cerrar" id="cerrarPromociones" aria-label="Cerrar promociones">✕</button>
+        <h2 id="promoModalTitulo">Promociones del mes</h2>
+        <p>Aquí puedes colocar cualquier información:</p>
+        <ul>
+            <li>Primera consulta con descuento.</li>
+            <li>Paquete de sesiones.</li>
+            <li>Promoción para estudiantes.</li>
+        </ul>
+    </div>
+</div>
+
     <?php wp_footer(); ?>
 </body>
 </html>

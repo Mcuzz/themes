@@ -199,44 +199,6 @@
         <?php endif; ?>
     </div>
 </section>
-<div class="promo-flotante">
 
-    <button
-        id="abrirPromociones"
-        class="promo-flotante__boton">
 
-        🏷
-        <span>Promociones<br>del mes</span>
-
-    </button>
-
-</div>
-
-<div class="promo-modal" id="promoModal">
-
-    <div class="promo-modal__contenido">
-
-        <button
-            class="promo-modal__cerrar"
-            id="cerrarPromociones">
-
-            ✕
-
-        </button>
-
-        <h2>Promociones del mes</h2>
-
-        <p>
-            Aquí puedes colocar cualquier información:
-        </p>
-
-        <ul>
-            <li>Primera consulta con descuento.</li>
-            <li>Paquete de sesiones.</li>
-            <li>Promoción para estudiantes.</li>
-        </ul>
-
-    </div>
-
-</div>
 <?php get_footer(); ?>

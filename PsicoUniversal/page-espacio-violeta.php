@@ -1,7 +1,7 @@
 <?php get_header(); ?>
 
 <section class="pagina-header pagina-header--violeta">
-    <div class="contenedor">
+    <div class="pagina-header__card">
         <h1><?php the_title(); ?></h1>
         <?php
         while ( have_posts() ) : the_post();

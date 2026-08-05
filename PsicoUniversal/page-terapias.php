@@ -8,23 +8,17 @@ endwhile;
 ?>
 
 <section class="pagina-header">
-    <div class="contenedor">
+    <div class="pagina-header__card">
+
         <h1><?php the_title(); ?></h1>
+
         <?php if ( $introduccion_pagina ) : ?>
-            <div class="pagina-header__intro"><?php echo apply_filters( 'the_content', $introduccion_pagina ); ?></div>
+            <div class="pagina-header__intro">
+                <?php echo apply_filters( 'the_content', $introduccion_pagina ); ?>
+            </div>
         <?php endif; ?>
 
-        <h2 class="seccion-subtitulo">Modalidades</h2>
-        <?php alicia_grid_etiquetas( array( 'Presencial', 'En línea' ) ); ?>
-
-    </div>
-</section>
-
-<section class="pagina-intro">
-    <div class="contenedor">
-
         <p class="pagina-intro__texto">
-            Un acompañamiento profesional para cada etapa de tu vida.
             Cada persona vive experiencias diferentes, por ello en
             <strong>PSICOUNIVERSAL</strong> ofrecemos procesos terapéuticos
             personalizados, basados en evidencia científica y adaptados a
@@ -32,6 +26,18 @@ endwhile;
             comprender lo que estás viviendo, fortalecer tus recursos
             personales y favorecer un bienestar duradero.
         </p>
+
+        <div class="pagina-header__modalidades">
+
+    <span class="pagina-header__modalidades-label">
+        Modalidades
+    </span>
+
+    <span class="pagina-header__modalidades-items">
+        Presencial &nbsp;&middot;&nbsp; En línea
+    </span>
+
+</div>
 
     </div>
 </section>
@@ -48,41 +54,48 @@ endwhile;
         ?>
 
         <?php if ( $terapias_query->have_posts() ) : ?>
-            <div class="terapias-editorial">
-                <?php $indice_terapia = 0; ?>
-                <?php while ( $terapias_query->have_posts() ) : $terapias_query->the_post(); ?>
-                    <?php $indice_terapia++; ?>
-                    <article class="terapia fade-in-al-scroll" aria-labelledby="terapia-<?php the_ID(); ?>-titulo">
-                        <div class="terapia__texto">
-                            
-                            <h2 id="terapia-<?php the_ID(); ?>-titulo"><?php the_title(); ?></h2>
-                            <div class="terapia__descripcion">
-                                <?php the_content(); ?>
-                            </div>
-                        </div>
+            <div class="terapias-grid">
+    <?php $indice_terapia = 0; ?>
+    <?php while ( $terapias_query->have_posts() ) : $terapias_query->the_post(); ?>
+        <?php $indice_terapia++; ?>
+        <article class="terapia-card fade-in-al-scroll" aria-labelledby="terapia-<?php the_ID(); ?>-titulo">
 
-                        <div class="terapia__imagen">
-                            <?php if ( has_post_thumbnail() ) : ?>
-                                <?php
-                                the_post_thumbnail(
-                                    'medium_large',
-                                    array(
-                                        'loading'  => 1 === $indice_terapia ? 'eager' : 'lazy',
-                                        'decoding' => 'async',
-                                        'sizes'    => '(min-width: 768px) 50vw, 100vw',
-                                        'alt'      => get_the_title(),
-                                    )
-                                );
-                                ?>
-                            <?php else : ?>
-                                <div class="terapia__imagen-placeholder" aria-hidden="true">
-                                    <span>Psicouniversal</span>
-                                </div>
-                            <?php endif; ?>
-                        </div>
-                    </article>
-                <?php endwhile; ?>
+            <div class="terapia-card__imagen">
+                <?php if ( has_post_thumbnail() ) : ?>
+                    <?php
+                    the_post_thumbnail(
+                        'medium_large',
+                        array(
+                            'loading'  => 1 === $indice_terapia ? 'eager' : 'lazy',
+                            'decoding' => 'async',
+                            'sizes'    => '(min-width: 768px) 33vw, 100vw',
+                            'alt'      => get_the_title(),
+                        )
+                    );
+                    ?>
+                <?php else : ?>
+                    <div class="terapia-card__imagen-placeholder" aria-hidden="true">
+                        <span>Psicouniversal</span>
+                    </div>
+                <?php endif; ?>
             </div>
+
+            <div class="terapia-card__contenido">
+                <h2 id="terapia-<?php the_ID(); ?>-titulo"><?php the_title(); ?></h2>
+                <div class="terapia-card__descripcion">
+                    <?php the_content(); ?>
+                </div>
+
+                <div class="terapia-card__cta">
+                    <a href="<?php echo esc_url( alicia_url_pagina( 'agenda-tu-cita' ) ); ?>" class="btn btn--pequeno">
+                        Agenda tu cita
+                    </a>
+                </div>
+            </div>
+
+        </article>
+    <?php endwhile; ?>
+</div>
             <?php wp_reset_postdata(); ?>
         <?php else : ?>
             <p class="terapias-vacio">

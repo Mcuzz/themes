@@ -7,21 +7,38 @@
      imagen destacada de esa misma Página como retrato.
      ============================================ -->
 <section class="bio-seccion">
-    <div class="contenedor bio-seccion__grid">
+    <div class="contenedor">
 
-        <?php if ( has_post_thumbnail() ) : ?>
-            <div class="bio-seccion__foto">
-                <?php the_post_thumbnail( 'medium_large', array( 'alt' => 'Alicia Monzalvo' ) ); ?>
+        <div class="bio-card">
+
+            <?php if ( has_post_thumbnail() ) : ?>
+                <div class="bio-card__foto">
+                    <?php the_post_thumbnail(
+                        'large',
+                        array(
+                            'alt' => get_the_title()
+                        )
+                    ); ?>
+                </div>
+            <?php endif; ?>
+
+            <div class="bio-card__contenido">
+
+                <span class="bio-card__eyebrow">
+                    Psicóloga • Docente • Investigadora
+                </span>
+
+                <h1><?php the_title(); ?></h1>
+
+                <?php
+                while ( have_posts() ) :
+                    the_post();
+                    the_content();
+                endwhile;
+                ?>
+
             </div>
-        <?php endif; ?>
 
-        <div class="bio-seccion__texto">
-            <h1><?php the_title(); ?></h1>
-            <?php
-            while ( have_posts() ) : the_post();
-                the_content();
-            endwhile;
-            ?>
         </div>
 
     </div>

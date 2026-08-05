@@ -10,7 +10,7 @@ $estado_cita = isset( $_GET['cita'] ) ? sanitize_key( wp_unslash( $_GET['cita'] 
 ?>
 
 <section class="pagina-header">
-    <div class="contenedor">
+    <div class="pagina-header__card">
         <h1><?php the_title(); ?></h1>
         <?php if ( $contenido_pagina ) : ?>
             <div class="pagina-header__intro"><?php echo apply_filters( 'the_content', $contenido_pagina ); ?></div>

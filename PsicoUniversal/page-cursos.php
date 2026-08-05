@@ -1,7 +1,7 @@
 <?php get_header(); ?>
 
 <section class="pagina-header">
-    <div class="contenedor">
+    <div class="pagina-header__card">
         <h1><?php the_title(); ?></h1>
         <?php
         while ( have_posts() ) : the_post();
@@ -11,17 +11,7 @@
         endwhile;
         ?>
 
-        <p class="seccion-intro">Además de la consulta psicológica, PSICOUNIVERSAL ofrece:</p>
-        <?php
-        alicia_grid_etiquetas( array(
-            'Cursos',
-            'Talleres',
-            'Diplomados',
-            'Conferencias',
-            'Capacitación para empresas e instituciones',
-            'Asesorías académicas y profesionales',
-        ) );
-        ?>
+       
     </div>
 </section>
 
