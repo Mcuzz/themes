@@ -349,11 +349,11 @@ html {
 
 /* ===== HERO ===== */
 
-.hero-inicio{
+.hero{
     padding:0 0 2rem;
 }
 
-.hero-inicio__grid{
+.hero__grid{
 
     min-height:550px;
 
@@ -374,7 +374,7 @@ html {
 
     
 }
-.hero-inicio__grid::before{
+.hero__grid::before{
 
     content:"";
 
@@ -384,7 +384,7 @@ html {
     background:rgba(0,0,0,.18);
 
 }
-.hero-inicio__texto{
+.hero__texto{
 
     position:relative;
     z-index:1;
@@ -400,7 +400,7 @@ html {
     backdrop-filter:blur(12px);
 
 }
-.hero-inicio__texto h1{
+.hero__texto h1{
 
     margin-top:0;
 
@@ -410,7 +410,7 @@ html {
 
 }
 
-.hero-inicio__subtitulo{
+.hero__subtitulo{
 
     margin-bottom:2rem;
 
@@ -421,7 +421,7 @@ html {
 }
 @media (max-width:768px){
 
-    .hero-inicio__grid{
+    .hero__grid{
 
         min-height:420px;
 
@@ -429,7 +429,7 @@ html {
 
     }
 
-    .hero-inicio__texto{
+    .hero__texto{
 
         max-width:none;
 
@@ -442,7 +442,7 @@ html {
 /* ===== INTRODUCCIÓN ===== */
 
 .intro-seccion {
-    padding: 0 0 var(--espaciado-seccion) 0;
+    padding: 3rem 0 var(--espaciado-seccion) 0;
 }
 
 .intro-grid {
@@ -457,7 +457,7 @@ html {
     display: grid;
     grid-template-columns: 1fr;
     gap: 2rem;
-    align-items: center;
+    align-items: start;
 }
 
 /* Desktop */
@@ -507,6 +507,8 @@ html {
     aspect-ratio: 4 / 3;
     object-fit: cover;
     border-radius: var(--radio-borde);
+    overflow:hidden;
+    box-shadow:0 12px 35px rgba(0,0,0,.08);
 }
 /* ===== TESTIMONIOS ===== */
 .testimonios-seccion { padding: var(--espaciado-seccion) 0; background: var(--color-blanco); }
@@ -532,15 +534,59 @@ html {
     transform: translateY(0);
 }
 
-/* ===== ENCABEZADO DE PÁGINAS INTERNAS ===== */
-.pagina-header { padding: 4rem 0 2rem; text-align: center; }
-.pagina-header h1 { color: var(--color-primario-oscuro); }
-.pagina-header__intro { max-width: 650px; margin: 1rem auto 0; }
+/* ===== HERO DE PÁGINAS INTERNAS ===== */
+
+.pagina-header{
+    background: var(--color-primario-oscuro);
+    max-width: 1100px;
+    margin: 0  auto;
+    color: white;
+    padding: 7rem 0 5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.pagina-header h1{
+    color: white;
+    margin-bottom: 1rem;
+}
+
+.pagina-header__intro{
+    max-width: 720px;
+
+    margin: 0 auto;
+
+    color: rgba(255,255,255,.82);
+
+    font-size: 1.05rem;
+
+    line-height: 1.8;
+}
+
+.pagina-header::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+    bottom:-45px;
+
+    width:160%;
+    height:90px;
+
+    background:white;
+
+    border-radius:50%;
+
+    transform:translateX(-50%);
+}
 
 /* ===== LISTA DE TERAPIAS ===== */
 .terapias-lista {
-    padding: clamp(3.5rem, 8vw, 7rem) 0 var(--espaciado-seccion);
-    background: var(--color-blanco);
+    padding: clamp(1.5rem, 4vw, 2rem) 0 var(--espaciado-seccion);
+    background: var(--color-fondo);
 }
 
 .terapias-editorial {
@@ -554,8 +600,16 @@ html {
 .terapia {
     display: grid;
     grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr);
-    align-items: center;
+    align-items: start;
     gap: clamp(2.5rem, 7vw, 6.5rem);
+    background: white;
+    padding: 2.5rem;
+    border-radius:12px;
+}
+
+.terapia__texto,
+.terapia__imagen{
+    align-self:start;
 }
 
 .terapia__texto {
@@ -579,43 +633,31 @@ html {
     letter-spacing: 0.16em;
 }
 
-.terapia__texto h2 {
-    max-width: 15ch;
-    margin: 0 0 1.25rem;
-    color: var(--color-primario-oscuro);
-    font-size: clamp(1.7rem, 3vw, 2.45rem);
-    line-height: 1.12;
+.terapia__texto h2{
+
+    margin:0 0 .8rem;
+
+    font-size:clamp(1.45rem,2vw,2rem);
+
+    line-height:1.2;
+
+    max-width:18ch;
+
 }
 
-.terapia__descripcion {
-    max-width: 40ch;
-    font-size: 1rem;
-    line-height: 1.7;
+.terapia__descripcion{
+    font-size:1.05rem;
+    line-height:1.9;
+    color:#4A5568;
 }
 
 .terapia__descripcion > :first-child { margin-top: 0; }
 .terapia__descripcion > :last-child { margin-bottom: 0; }
 
-.terapia__enlace {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    margin-top: 1.5rem;
-    color: var(--color-primario-oscuro);
-    font-weight: 800;
-    text-decoration-thickness: 2px;
-    text-underline-offset: 0.25em;
-}
 
-.terapia__enlace span {
-    transition: transform var(--transicion-suave);
-}
-
-.terapia__enlace:hover span { transform: translateX(4px); }
-
-.terapia__imagen {
-    overflow: hidden;
-    background: var(--color-acento);
+.terapia__imagen{
+    overflow:hidden;
+    box-shadow:0 12px 35px rgba(0,0,0,.08);
 }
 
 .terapia__imagen img,
@@ -635,6 +677,8 @@ html {
     letter-spacing: 0.14em;
     text-transform: uppercase;
 }
+
+
 
 @media (max-width: 767px) {
     .terapias-editorial { gap: 4rem; }
@@ -744,6 +788,28 @@ html {
 .evento-item__cta { margin-top: 1.5rem; }
 .evento-item__cta .btn { cursor: default; } /* texto informativo; lo hacemos clicable en el paso del formulario si aplica */
 
+/* ===== INTRODUCCIÓN DE PÁGINA ===== */
+
+.pagina-intro{
+    padding: 4rem 0 3rem;
+}
+
+.pagina-intro__texto{
+
+    max-width: 760px;
+
+    margin: 0 auto;
+
+    text-align: center;
+
+    font-size: 1.1rem;
+
+    line-height: 1.9;
+
+    color: var(--color-texto);
+
+}
+
 /* ===== BIOGRAFÍA ===== */
 .bio-seccion { padding: 4rem 0; }
 .bio-seccion__grid { display: grid; grid-template-columns: 1fr; gap: 2rem; align-items: start; }
@@ -769,6 +835,111 @@ html {
 }
 .formacion-item__anio { font-weight: 700; color: var(--color-primario); }
 .formacion-item__institucion { display: block; font-size: 0.9rem; color: var(--color-primario-oscuro); }
+
+/* ===== Etiqueta base (usada en Formación y en el grid genérico) ===== */
+.etiqueta{
+    display: inline-flex;
+    align-items: center;
+    gap: .6rem;
+    padding: .65rem 1rem;
+    background: white;
+    border-radius: 14px;
+    border: 1px solid #E4ECF8;
+    box-shadow: 0 4px 12px rgba(20,60,120,.05);
+    color: var(--color-primario-oscuro);
+    font-weight: 500;
+    transition: all .25s ease;
+}
+
+.etiqueta:hover{
+    border-color: var(--color-primario);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(20,60,120,.10);
+}
+
+.etiqueta::before{
+    content: "✓";
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: rgba(58, 116, 207, .12);
+    color: var(--color-primario);
+    font-size: .75rem;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+/* ===== Formación complementaria (etiquetas agrupadas por categoría) ===== */
+.etiquetas-formacion { max-width: 700px; margin: 2.5rem auto 0; }
+.etiquetas-formacion__grupo { margin-bottom: 1.5rem; }
+.etiquetas-formacion__titulo {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--color-primario-oscuro);
+    margin: 0 0 0.6rem;
+}
+.etiquetas-formacion__lista { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.etiqueta--reconocimiento { border-left-color: var(--color-acento); }
+.etiqueta--afiliacion { border-left-color: var(--color-primario-oscuro); }
+
+/* ===== Grid de etiquetas genérico (reutilizable en todo el sitio:
+   "Nos distingue", Modalidades, Áreas de atención, Enfoque terapéutico,
+   Cursos y conferencias, Líneas de investigación) ===== */
+.grid-etiquetas{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+    gap:1rem;
+
+}
+.seccion-subtitulo {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-primario-oscuro);
+    margin: 2rem 0 0.5rem;
+}
+
+/* ===== GRID PARA LA LISTA DE "EN QUE TE AYUDO?" ===== */
+.lista-ayuda{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:0.85rem 2rem;
+
+    margin:1.75rem 0;
+
+    padding:0;
+    list-style:none;
+}
+
+.lista-ayuda li{
+    display:flex;
+    align-items:center;
+    gap:.75rem;
+
+    color:var(--color-primario-oscuro);
+    font-weight:500;
+    line-height:1.4;
+}
+
+.lista-ayuda li::before{
+    content:"";
+
+    width:9px;
+    height:9px;
+
+    border-radius:50%;
+
+    background:var(--color-primario);
+
+    flex-shrink:0;
+}
 
 /* ===== EXPERIENCIA ===== */
 .experiencia-seccion { padding: 2rem 0 var(--espaciado-seccion); background: var(--color-blanco); }

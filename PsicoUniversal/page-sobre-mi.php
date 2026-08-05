@@ -27,53 +27,46 @@
     </div>
 </section>
 
-<!-- ===== FORMACIÓN ACADÉMICA ===== -->
-<section class="sobremi-section formacion-section fade-in-section">
-    <div class="container">
-        <h2 class="section-title">Formación Académica</h2>
+<!-- ============================================
+     FORMACIÓN ACADÉMICA
+     ============================================ -->
+<section class="formacion-seccion">
+    <div class="contenedor">
+        <h2 class="seccion-titulo">Formación académica</h2>
 
         <?php
-        $formacion = new WP_Query(array(
+        $formacion_query = new WP_Query( array(
             'post_type'      => 'formacion_academica',
             'posts_per_page' => -1,
             'orderby'        => 'menu_order',
             'order'          => 'ASC',
-        ));
+        ) );
         ?>
 
-        <?php if ( $formacion->have_posts() ) : ?>
-            <div class="formacion-grid">
-                <?php while ( $formacion->have_posts() ) : $formacion->the_post();
-                    $institucion = get_field('institucion');
-                    $anio = get_field('anio_conclusion');
-                ?>
-                    <article class="formacion-item fade-in-item">
-                        <h3><?php the_title(); ?></h3>
-                        <?php if ( $institucion || $anio ) : ?>
-                            <div class="formacion-meta">
-                                <?php if ( $institucion ) : ?>
-                                    <span class="formacion-institucion"><?php echo esc_html($institucion); ?></span>
-                                <?php endif; ?>
-                                <?php if ( $institucion && $anio ) : ?>
-                                    <span class="formacion-separador">·</span>
-                                <?php endif; ?>
-                                <?php if ( $anio ) : ?>
-                                    <span class="formacion-anio"><?php echo esc_html($anio); ?></span>
-                                <?php endif; ?>
-                            </div>
-                        <?php endif; ?>
-                    </article>
+        <?php if ( $formacion_query->have_posts() ) : ?>
+            <ul class="formacion-lista">
+                <?php while ( $formacion_query->have_posts() ) : $formacion_query->the_post(); ?>
+                    <?php
+                    $institucion = get_field( 'institucion' );
+                    $anio        = get_field( 'anio_conclusion' );
+                    ?>
+                    <li class="formacion-item fade-in-al-scroll">
+                        <span class="formacion-item__anio"><?php echo $anio ? esc_html( $anio ) : '—'; ?></span>
+                        <span>
+                            <?php the_title(); ?>
+                            <?php if ( $institucion ) : ?>
+                                <span class="formacion-item__institucion"><?php echo esc_html( $institucion ); ?></span>
+                            <?php endif; ?>
+                        </span>
+                    </li>
                 <?php endwhile; wp_reset_postdata(); ?>
-            </div>
+            </ul>
         <?php else : ?>
-            <div class="proximamente-card fade-in-item">
-                <span class="proximamente-icono">🎓</span>
-                <p>Aún no se ha agregado formación académica.</p>
-            </div>
+            <p class="seccion-vacio">Próximamente se agregará el detalle de formación académica.</p>
         <?php endif; ?>
 
         <?php
-        $etiquetas = get_field('etiquetas_formacion', 'option');
+        $etiquetas = get_field( 'etiquetas_formacion', 'option' );
         if ( $etiquetas ) :
             $grupos = array();
             foreach ( $etiquetas as $et ) {
@@ -85,14 +78,14 @@
                 'reconocimiento'     => 'Reconocimientos',
                 'afiliacion'         => 'Afiliaciones',
             );
-        ?>
-            <div class="etiquetas-formacion-wrap fade-in-item">
+            ?>
+            <div class="etiquetas-formacion fade-in-al-scroll">
                 <?php foreach ( $grupos as $cat => $items ) : ?>
-                    <div class="etiquetas-grupo">
-                        <h4 class="etiquetas-grupo-titulo"><?php echo esc_html($nombres_categoria[$cat] ?? $cat); ?></h4>
-                        <div class="etiquetas-grid">
+                    <div class="etiquetas-formacion__grupo">
+                        <h3 class="etiquetas-formacion__titulo"><?php echo esc_html( $nombres_categoria[ $cat ] ?? $cat ); ?></h3>
+                        <div class="etiquetas-formacion__lista">
                             <?php foreach ( $items as $texto ) : ?>
-                                <span class="etiqueta-badge etiqueta-<?php echo esc_attr($cat); ?>"><?php echo esc_html($texto); ?></span>
+                                <span class="etiqueta etiqueta--<?php echo esc_attr( $cat ); ?>"><?php echo esc_html( $texto ); ?></span>
                             <?php endforeach; ?>
                         </div>
                     </div>
@@ -246,6 +239,21 @@
 <section class="investigaciones-seccion">
     <div class="contenedor">
         <h2 class="seccion-titulo">Investigaciones</h2>
+
+        <h3 class="seccion-subtitulo">Líneas de investigación</h3>
+        <?php
+        alicia_grid_etiquetas( array(
+            'Salud mental',
+            'Regulación emocional',
+            'Calidad de vida',
+            'Interculturalidad',
+            'Migración',
+            'Inclusión educativa',
+            'Discapacidad',
+            'Autismo',
+            'Competencias socioemocionales',
+        ) );
+        ?>
 
         <?php
         $investigacion_query = new WP_Query( array(

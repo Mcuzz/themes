@@ -327,3 +327,25 @@ remove_action( 'wp_head', 'wp_generator' ); // oculta versión de WP (seguridad)
         echo $iconos[ $nombre_red ]; // phpcs:ignore -- SVG controlado por nosotros, no input de usuario
     }
 }
+
+/* ============================================
+   GRID DE ETIQUETAS
+   Helper reutilizable para mostrar listas cortas
+   (características, modalidades, áreas de atención,
+   enfoques, líneas de investigación, etc.) como
+   etiquetas en vez de párrafos o bullets largos.
+   Reduce carga cognitiva para lectores con ansiedad.
+
+   Uso:
+   alicia_grid_etiquetas( array( 'Ansiedad', 'Depresión', 'Estrés' ) );
+   ============================================ */
+function alicia_grid_etiquetas( $items ) {
+    if ( empty( $items ) ) {
+        return;
+    }
+    echo '<div class="grid-etiquetas fade-in-al-scroll">';
+    foreach ( $items as $texto ) {
+        echo '<span class="etiqueta">' . esc_html( $texto ) . '</span>';
+    }
+    echo '</div>';
+}

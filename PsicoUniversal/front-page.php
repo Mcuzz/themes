@@ -3,18 +3,18 @@
 <!-- ============================================
      HERO — foto y frase de Alicia
      ============================================ -->
-<section class="hero-inicio">
+<section class="hero">
 
-    <?php $hero_foto = alicia_campo( 'hero_foto', alicia_opciones_sitio_id() ); ?>
+<?php $hero_foto = alicia_campo( 'hero_foto', alicia_opciones_sitio_id() ); ?>
 
-    <div
-        class="contenedor hero-inicio__grid"
-        <?php if ( $hero_foto ) : ?>
-            style="background-image:url('<?php echo esc_url( $hero_foto ); ?>');"
-        <?php endif; ?>
-    >
+<div
+    class="contenedor hero__grid"
+    <?php if ( $hero_foto ) : ?>
+        style="background-image:url('<?php echo esc_url( $hero_foto ); ?>');"
+    <?php endif; ?>
+>
 
-        <div class="hero-inicio__texto">
+    <div class="hero__texto">
 
             <h1>
                 <?php
@@ -27,7 +27,7 @@
             $frase_secundaria = alicia_campo( 'hero_frase_secundaria', alicia_opciones_sitio_id() );
             if ( $frase_secundaria ) :
             ?>
-                <p class="hero-inicio__subtitulo">
+                <p class="hero__subtitulo">
                     <?php echo esc_html( $frase_secundaria ); ?>
                 </p>
             <?php endif; ?>
@@ -43,6 +43,30 @@
 </section>
 
 <!-- ============================================
+     POR QUÉ ELEGIR PSICOUNIVERSAL
+     ============================================ -->
+<section class="porque-elegir-seccion">
+    <div class="contenedor">
+        <h2 class="seccion-titulo">¿Por qué elegir PSICOUNIVERSAL?</h2>
+        <p class="seccion-intro">
+            En PSICOUNIVERSAL combinamos evidencia científica, experiencia clínica y un
+            acompañamiento cercano para ofrecer procesos terapéuticos personalizados.
+        </p>
+
+        <?php
+        alicia_grid_etiquetas( array(
+            'Atención basada en evidencia científica',
+            'Más de 15 años de experiencia clínica y universitaria',
+            'Investigadora reconocida por el SNII',
+            'Formación internacional',
+            'Atención ética, cálida y confidencial',
+            'Tratamientos personalizados',
+        ) );
+        ?>
+    </div>
+</section>
+
+<!-- ============================================
      INTRODUCCIÓN
 ============================================ -->
 <section class="intro-seccion">
@@ -50,9 +74,10 @@
 
         <?php
         $bloques_intro = array(
-            'intro_quien_soy'    => '¿Quién soy?',
+            'intro_quien_soy'    => 'Recupera el equilibrio entre tu mente, tus emociones y tu vida', 
             'intro_en_que_ayudo' => '¿En qué te puedo ayudar?',
             'intro_enfoque'      => '¿Cuál es mi enfoque?',
+
         );
 
         // Cargar las imágenes una sola vez
@@ -78,13 +103,42 @@
                 $foto = $galeria[$indice] ?? null;
             ?>
 
-                <article class="intro-item fade-in-al-scroll">
+               <article class="intro-item fade-in-al-scroll">
 
                     <div class="intro-item__texto">
                         <h2><?php echo esc_html( $titulo ); ?></h2>
-                        <div class="intro-card__texto">
-                            <?php echo wp_kses_post( $contenido ); ?>
-                        </div>
+
+                        <?php if ( 'intro_en_que_ayudo' === $campo ) : ?>
+
+                            <p class="intro-card__texto">
+                                Brindamos atención psicológica para niños, adolescentes, adultos y parejas, acompañando procesos relacionados con:
+                            </p>
+
+                            <ul class="lista-ayuda">
+    <li>Ansiedad</li>
+    <li>Depresión</li>
+    <li>Estrés</li>
+    <li>Regulación emocional</li>
+    <li>Autoestima</li>
+    <li>Trauma</li>
+    <li>Duelo</li>
+    <li>Relaciones de pareja</li>
+    <li>Desarrollo personal</li>
+    <li>TDAH</li>
+    <li>TEA</li>
+</ul>
+
+                            <p class="intro-card__texto">
+                                Cada proceso terapéutico se adapta a tu historia, tus objetivos y tu ritmo de avance.
+                            </p>
+
+                        <?php else : ?>
+
+                            <div class="intro-card__texto">
+                                <?php echo wp_kses_post( $contenido ); ?>
+                            </div>
+
+                        <?php endif; ?>
                     </div>
 
                     <?php if ( $foto ) : ?>
@@ -130,7 +184,7 @@
                     <blockquote class="testimonio-card fade-in-al-scroll">
                         <p class="testimonio-card__texto">&ldquo;<?php echo esc_html( wp_strip_all_tags( get_the_content() ) ); ?>&rdquo;</p>
                         <footer class="testimonio-card__autor">
-                            <cite><?php the_title(); ?></cite>
+                            <?php the_title(); ?>
                             <?php $ciudad = get_field( 'ciudad_pais' ); ?>
                             <?php if ( $ciudad ) : ?>
                                 <span class="testimonio-card__ciudad"><?php echo esc_html( $ciudad ); ?></span>
@@ -145,7 +199,7 @@
         <?php endif; ?>
     </div>
 </section>
-<<div class="promo-flotante">
+<div class="promo-flotante">
 
     <button
         id="abrirPromociones"

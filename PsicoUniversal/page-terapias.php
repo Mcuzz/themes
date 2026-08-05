@@ -13,6 +13,26 @@ endwhile;
         <?php if ( $introduccion_pagina ) : ?>
             <div class="pagina-header__intro"><?php echo apply_filters( 'the_content', $introduccion_pagina ); ?></div>
         <?php endif; ?>
+
+        <h2 class="seccion-subtitulo">Modalidades</h2>
+        <?php alicia_grid_etiquetas( array( 'Presencial', 'En línea' ) ); ?>
+
+    </div>
+</section>
+
+<section class="pagina-intro">
+    <div class="contenedor">
+
+        <p class="pagina-intro__texto">
+            Un acompañamiento profesional para cada etapa de tu vida.
+            Cada persona vive experiencias diferentes, por ello en
+            <strong>PSICOUNIVERSAL</strong> ofrecemos procesos terapéuticos
+            personalizados, basados en evidencia científica y adaptados a
+            tus necesidades. Nuestro objetivo es brindarte herramientas para
+            comprender lo que estás viviendo, fortalecer tus recursos
+            personales y favorecer un bienestar duradero.
+        </p>
+
     </div>
 </section>
 
@@ -39,9 +59,6 @@ endwhile;
                             <div class="terapia__descripcion">
                                 <?php the_content(); ?>
                             </div>
-                            <a href="<?php echo esc_url( alicia_url_pagina( 'agenda-tu-cita' ) ); ?>" class="terapia__enlace">
-                                Agenda una consulta <span aria-hidden="true">&rarr;</span>
-                            </a>
                         </div>
 
                         <div class="terapia__imagen">
@@ -78,3 +95,4 @@ endwhile;
 </section>
 
 <?php get_footer(); ?>
+

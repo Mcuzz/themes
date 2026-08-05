@@ -10,6 +10,18 @@
             endif;
         endwhile;
         ?>
+
+        <p class="seccion-intro">Además de la consulta psicológica, PSICOUNIVERSAL ofrece:</p>
+        <?php
+        alicia_grid_etiquetas( array(
+            'Cursos',
+            'Talleres',
+            'Diplomados',
+            'Conferencias',
+            'Capacitación para empresas e instituciones',
+            'Asesorías académicas y profesionales',
+        ) );
+        ?>
     </div>
 </section>
 
