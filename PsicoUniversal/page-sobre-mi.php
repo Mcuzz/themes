@@ -68,14 +68,14 @@
                     $anio        = get_field( 'anio_conclusion' );
                     ?>
                     <li class="formacion-item fade-in-al-scroll">
-                        <span class="formacion-item__anio"><?php echo $anio ? esc_html( $anio ) : '—'; ?></span>
-                        <span>
-                            <?php the_title(); ?>
-                            <?php if ( $institucion ) : ?>
-                                <span class="formacion-item__institucion"><?php echo esc_html( $institucion ); ?></span>
-                            <?php endif; ?>
-                        </span>
-                    </li>
+    <?php if ( $anio ) : ?>
+        <span class="formacion-item__anio"><?php echo esc_html( $anio ); ?></span>
+    <?php endif; ?>
+    <span class="formacion-item__titulo"><?php the_title(); ?></span>
+    <?php if ( $institucion ) : ?>
+        <span class="formacion-item__institucion"><?php echo esc_html( $institucion ); ?></span>
+    <?php endif; ?>
+</li>
                 <?php endwhile; wp_reset_postdata(); ?>
             </ul>
         <?php else : ?>
@@ -83,32 +83,33 @@
         <?php endif; ?>
 
         <?php
-        $etiquetas = get_field( 'etiquetas_formacion', 'option' );
-        if ( $etiquetas ) :
-            $grupos = array();
-            foreach ( $etiquetas as $et ) {
-                $grupos[ $et['categoria'] ][] = $et['texto'];
-            }
-            $nombres_categoria = array(
-                'diplomado'          => 'Diplomados',
-                'formacion_continua' => 'Formación continua',
-                'reconocimiento'     => 'Reconocimientos',
-                'afiliacion'         => 'Afiliaciones',
-            );
-            ?>
-            <div class="etiquetas-formacion fade-in-al-scroll">
-                <?php foreach ( $grupos as $cat => $items ) : ?>
-                    <div class="etiquetas-formacion__grupo">
-                        <h3 class="etiquetas-formacion__titulo"><?php echo esc_html( $nombres_categoria[ $cat ] ?? $cat ); ?></h3>
-                        <div class="etiquetas-formacion__lista">
-                            <?php foreach ( $items as $texto ) : ?>
-                                <span class="etiqueta etiqueta--<?php echo esc_attr( $cat ); ?>"><?php echo esc_html( $texto ); ?></span>
-                            <?php endforeach; ?>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
+$etiquetas = get_field( 'etiquetas_formacion', 'option' );
+if ( $etiquetas ) :
+    $nombres_categoria = array(
+        'diplomado'          => 'Diplomados y formación complementaria',
+        'formacion_continua' => 'Diplomados y formación complementaria',
+        'reconocimiento'     => 'Reconocimientos y afiliaciones',
+        'afiliacion'         => 'Reconocimientos y afiliaciones',
+    );
+    $grupos = array();
+    foreach ( $etiquetas as $et ) {
+        $titulo_grupo = $nombres_categoria[ $et['categoria'] ] ?? ucfirst( $et['categoria'] );
+        $grupos[ $titulo_grupo ][] = $et;
+    }
+    ?>
+    <div class="etiquetas-formacion fade-in-al-scroll">
+        <?php foreach ( $grupos as $titulo_grupo => $items ) : ?>
+            <div class="etiquetas-formacion__grupo">
+                <h3 class="etiquetas-formacion__titulo"><?php echo esc_html( $titulo_grupo ); ?></h3>
+                <div class="etiquetas-formacion__lista">
+                    <?php foreach ( $items as $item ) : ?>
+                        <span class="etiqueta etiqueta--<?php echo esc_attr( $item['categoria'] ); ?>"><?php echo esc_html( $item['texto'] ); ?></span>
+                    <?php endforeach; ?>
+                </div>
             </div>
-        <?php endif; ?>
+        <?php endforeach; ?>
+    </div>
+<?php endif; ?>
     </div>
 </section>
 

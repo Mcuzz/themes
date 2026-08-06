@@ -7,7 +7,7 @@
     --color-acento: #CFE8FF;
     --color-blanco: #FFFFFF;
 
-     --font-title: 'Merriweather', serif;
+     --font-title: 'Helvetica', 'bold';
   --font-body: 'Open Sans', sans-serif;
 
     --spacing-xs: 4px;
@@ -98,22 +98,21 @@ p {
 .promo-modal{
 
     position:fixed;
-
     inset:0;
 
     display:flex;
-
     align-items:center;
-
     justify-content:center;
 
-    background:rgba(0,0,0,.45);
+    padding:2rem;
+
+    background:rgba(20,35,55,.45);
+    backdrop-filter:blur(4px);
 
     opacity:0;
-
     visibility:hidden;
 
-    transition:.25s;
+    transition:.25s ease;
 
     z-index:1000;
 
@@ -122,40 +121,194 @@ p {
 .promo-modal.activo{
 
     opacity:1;
-
     visibility:visible;
 
 }
+
 .promo-modal__contenido{
 
-    position:relative;
+    width:min(620px,100%);
+    padding:2.8rem;
 
-    width:min(92%,500px);
+    background:#F7F3EE;
 
-    padding:2.5rem;
+    box-shadow:
+        0 18px 60px rgba(18,71,120,.16),
+        0 2px 10px rgba(18,71,120,.05);
 
-    border-radius:var(--radio-borde);
-
-    background:white;
-
-    box-shadow:0 25px 60px rgba(0,0,0,.2);
+    border:1px solid rgba(18,71,120,.08);
 
 }
+
+.promo-modal__header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+    margin-bottom:1.5rem;
+
+}
+
+.promo-modal__eyebrow{
+
+    margin:0;
+
+    font-size:.72rem;
+
+    font-weight:700;
+
+    letter-spacing:.16em;
+
+    text-transform:uppercase;
+
+    color:#7B8894;
+
+}
+
+.promo-modal h2{
+
+    display:inline-block;
+
+    margin:0 0 1.5rem;
+
+    padding:.55rem 1rem;
+
+    background:linear-gradient(
+        90deg,
+        var(--color-primario),
+        var(--color-primario-oscuro)
+    );
+
+    color:#fff;
+
+    font-size:2rem;
+
+    line-height:1.2;
+
+}
+
+.promo-modal__intro{
+
+    margin:0 0 2rem;
+
+    color:#5D6A78;
+
+    line-height:1.85;
+
+}
+
+.promo-precios{
+
+    display:grid;
+
+    gap:.25rem;
+
+}
+
+.promo-precio{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:1.15rem 0;
+
+    border-top:1px solid rgba(18,71,120,.10);
+
+}
+
+.promo-precio:first-child{
+
+    border-top:none;
+
+}
+
+.promo-precio h3{
+
+    margin:0 0 .35rem;
+
+    font-size:1rem;
+
+    font-weight:600;
+
+    color:var(--color-primario-oscuro);
+
+}
+
+.promo-precio span{
+
+    font-size:1.75rem;
+
+    font-weight:700;
+
+    color:var(--color-primario);
+
+    white-space:nowrap;
+
+}
+
+.promo-precio small{
+
+    display:block;
+
+    color:#768391;
+
+    font-size:.9rem;
+
+}
+
+.promo-modal__nota{
+
+    margin-top:2rem;
+
+    padding-top:1.5rem;
+
+    border-top:1px solid rgba(18,71,120,.10);
+
+    color:#5D6A78;
+
+    line-height:1.8;
+
+}
+
 .promo-modal__cerrar{
 
-    position:absolute;
+    width:36px;
 
-    top:1rem;
+    height:36px;
 
-    right:1rem;
+    display:grid;
+
+    place-items:center;
 
     border:none;
 
-    background:none;
+    background:transparent;
 
-    font-size:1.5rem;
+    color:#8A95A0;
+
+    font-size:1.2rem;
+
+    line-height:1;
 
     cursor:pointer;
+
+    transition:
+        color .25s ease,
+        transform .25s ease;
+
+}
+
+.promo-modal__cerrar:hover{
+
+    color:var(--color-primario);
+
+    transform:rotate(90deg);
 
 }
 
@@ -464,11 +617,56 @@ html {
 
 }
 
+/*==================================
+POR QUÉ ELEGIR
+==================================*/
+
+.porque-elegir-seccion .seccion-titulo{
+
+    margin:0 0 1rem;
+
+    max: width 1000px;;
+
+    color:var(--color-primario-oscuro);
+
+    line-height:1.2;
+
+}
+
+.porque-elegir{
+
+    max-width:760px;
+
+}
+
+.porque-elegir h2{
+
+    margin:0 0 1rem;
+
+    color:var(--color-primario-oscuro);
+
+    line-height:1.2;
+
+}
+
+.porque-elegir-seccion .seccion-intro{
+
+    max-width: 1000px;
+
+    margin:0 0 2rem;
+
+    line-height:1.9;
+
+    color:#556678;
+
+}
+
 /* ===== INTRODUCCIÓN ===== */
 
-.intro-seccion {
+.intro-seccion{
     padding: 3rem 0 var(--espaciado-seccion) 0;
 }
+
 
 .intro-grid {
     display: flex;
@@ -480,7 +678,7 @@ html {
 
 .intro-item {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
     gap: 2rem;
     align-items: start;
 }
@@ -948,7 +1146,7 @@ BIOGRAFÍA
 ==========================*/
 
 .bio-seccion{
-    padding: 5rem 0;
+    padding: 0rem 0;
 }
 
 .bio-card{
@@ -1055,61 +1253,46 @@ BIOGRAFÍA
 
 }
 /* ===== FORMACIÓN ===== */
-.formacion-seccion { padding: 2rem 0 var(--espaciado-seccion); }
+/* Grados académicos: lista de filas, no tarjetas en grid.
+   Con solo 5 ítems y sin año en la mayoría, una lista se lee
+   mucho más ligera que un grid de tarjetas con sombra. */
 .formacion-lista{
-
     list-style:none;
-
-    max-width:900px;
-
-    margin:auto;
-
+    max-width:720px;
+    margin:0 auto;
     padding:0;
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-gap:1.5rem;
-}
-.formacion-item{
-
     display:flex;
-
     flex-direction:column;
+    gap:0.6rem;
+}
 
-    justify-content:space-between;
-
-    padding:2rem;
-
+.formacion-item{
+    display:flex;
+    align-items:baseline;
+    flex-wrap:wrap;
+    column-gap:0.75rem;
+    row-gap:0.2rem;
+    padding:1rem 1.3rem;
     background:#fff;
-
-    border-top:4px solid var(--color-primario);
-
-    box-shadow:0 10px 25px rgba(18,71,120,.06);
-
+    border-left:3px solid var(--color-primario);
 }
+
 .formacion-item__anio{
-
-    font-size:2rem;
-
+    flex-shrink:0;
+    font-size:0.85rem;
     font-weight:700;
-
-    margin-bottom:1rem;
-
+    color:var(--color-primario);
 }
-.formacion-item span:first-of-type{
 
-    font-size:1.1rem;
-
+.formacion-item__titulo{
+    font-size:1.02rem;
     font-weight:600;
-
     color:var(--color-primario-oscuro);
-
 }
+
 .formacion-item__institucion{
-
-    margin-top:.8rem;
-
     color:#69798D;
-
+    font-size:0.92rem;
 }
 .formacion-item strong{
 
@@ -1187,39 +1370,53 @@ gap:1.5rem;
     margin: 2rem 0 0.5rem;
 }
 
-/* ===== GRID PARA LA LISTA DE "EN QUE TE AYUDO?" ===== */
+/* ===== EN QUÉ TE AYUDO ===== */
+
 .lista-ayuda{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:0.85rem 2rem;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:.9rem 2.5rem;
 
-    margin:1.75rem 0;
-
+    margin:2rem 0;
     padding:0;
+
     list-style:none;
 }
 
 .lista-ayuda li{
-    display:flex;
-    align-items:center;
-    gap:.75rem;
+    position:relative;
+
+    padding:.15rem 0 .15rem 1rem;
 
     color:var(--color-primario-oscuro);
     font-weight:500;
-    line-height:1.4;
+    line-height:1.5;
 }
 
 .lista-ayuda li::before{
     content:"";
 
-    width:9px;
-    height:9px;
+    position:absolute;
+    left:0;
+    top:50%;
 
-    border-radius:50%;
+    transform:translateY(-50%);
+
+    width:3px;
+    height:1.1rem;
+
+    border-radius:999px;
 
     background:var(--color-primario);
+}
 
-    flex-shrink:0;
+@media (max-width:768px){
+
+    .lista-ayuda{
+        grid-template-columns:1fr;
+        gap:.75rem;
+    }
+
 }
 
 /* ===== EXPERIENCIA ===== */

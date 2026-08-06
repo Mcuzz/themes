@@ -93,19 +93,78 @@
     </button>
 </div>
 
+<!-- ===== Esta seccion tiene que tener un panel de promociones 
+editables desde wordpress para que alicia pueda actualizarlas 
+cada mes con facilidfad ACTUALIZAR PRONTO ===== -->
+
 <div class="promo-modal" id="promoModal" role="dialog" aria-modal="true" aria-labelledby="promoModalTitulo">
+
     <div class="promo-modal__contenido">
-        <button class="promo-modal__cerrar" id="cerrarPromociones" aria-label="Cerrar promociones">✕</button>
-        <h2 id="promoModalTitulo">Promociones del mes</h2>
-        <p>Aquí puedes colocar cualquier información:</p>
-        <ul>
-            <li>Primera consulta con descuento.</li>
-            <li>Paquete de sesiones.</li>
-            <li>Promoción para estudiantes.</li>
-        </ul>
-    </div>
+
+     <div class="promo-modal__header">
+
+    <span class="promo-modal__eyebrow">
+        PROMOCIONES VIGENTES
+    </span>
+
+    <button class="promo-modal__cerrar"
+            id="cerrarPromociones"
+            aria-label="Cerrar promociones">
+        ✕
+    </button>
+
 </div>
 
+        <h2 id="promoModalTitulo">
+            Promociones del mes
+        </h2>
+
+        <p class="promo-modal__intro">
+            En <strong>PSICOUNIVERSAL</strong> creemos que cuidar la salud mental
+            es una inversión en tu bienestar.
+        </p>
+
+        <div class="promo-precios">
+
+            <article class="promo-precio">
+
+                <h3>Psicoterapia individual</h3>
+
+                <span>$500 MXN</span>
+
+                <small>Presencial</small>
+
+            </article>
+
+            <article class="promo-precio">
+
+                <h3>Terapia de pareja</h3>
+
+                <span>$600 MXN</span>
+
+                <small>Por sesión</small>
+
+            </article>
+
+            <article class="promo-precio">
+
+                <h3>Psicoterapia en línea</h3>
+
+                <span>$400 MXN</span>
+
+                <small>Por sesión</small>
+
+            </article>
+
+        </div>
+
+        <p class="promo-modal__nota">
+            Pregunta por nuestros paquetes de sesiones y encuentra la modalidad que mejor se adapte a tus necesidades.
+        </p>
+
+    </div>
+
+</div>
     <?php wp_footer(); ?>
 </body>
 </html>
